@@ -5,6 +5,9 @@ import {makeStyles} from '@material-ui/core';
 import ChatCard from '../../components/chat-card/ChatCard';
 import TextInput from '../../components/chat-text-input/TextInput';
 import Box from '@material-ui/core/Box';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
 
 
 let messagesMock = [
@@ -28,7 +31,11 @@ const useStyles = makeStyles({
     height: "100%",
   },
   box: {
+    marginTop: "15px",
     marginBottom: "30px"
+  },
+  appBar: {
+    borderRadius: "5px 5px 0px 0px",
   }
 })
 
@@ -48,28 +55,35 @@ const FirstPage = () => {
   }
 
   return (
-    <Grid
-      fluid
-      height = {1}
-      container
-      justify = "center"
-      className={classes.container}
-    >
+    <div>
       <Grid
-        item
-        xs={10}
-        md={8}
+        fluid
+        height = {1}
+        container
+        justify = "center"
+        className={classes.container}
       >
-        <Paper
-          className={classes.paper}
+        <Grid
+          item
+          xs={10}
+          md={8}
         >
-          <Box className={classes.box}>
-            {getMessages(messages)}
-          </Box>
-        <TextInput addMessage={addMsg} user={"user1"}/>
-        </Paper>
+          <Paper>
+            <AppBar position="static" className={classes.appBar}>
+              <Toolbar>
+                <Typography>
+                  Chat
+                </Typography>
+              </Toolbar>
+            </AppBar>
+            <Box className={classes.box}>
+              {getMessages(messages)}
+            </Box>
+            <TextInput addMessage={addMsg} user={"user1"}/>
+          </Paper>
+        </Grid>
       </Grid>
-    </Grid>
+    </div>
   )
 }
 

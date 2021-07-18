@@ -11,6 +11,7 @@ const useStyles = makeStyles({
     paddingRight: "20px",
     paddingTop: "10px",
     paddingBottom: "10px",
+    borderRadius: "0px"
   }
 })
 

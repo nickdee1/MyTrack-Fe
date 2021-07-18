@@ -24,7 +24,10 @@ const TextInput = ({addMessage, user}) => {
   const [message, setMessage] = useState("a")
 
   return (
-    <Paper className={classes.root}>
+    <Paper
+      className={classes.root}
+      elevation={0}
+    >
       <InputBase
         className={classes.input}
         multiline
