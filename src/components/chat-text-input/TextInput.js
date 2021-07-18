@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Paper from '@material-ui/core/Paper';
 import InputBase from '@material-ui/core/InputBase';
 import SendIcon from '@material-ui/icons/Send';
@@ -19,8 +19,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const TextInput = () => {
+const TextInput = ({addMessage, user}) => {
   const classes = useStyles()
+  const [message, setMessage] = useState("a")
 
   return (
     <Paper className={classes.root}>
@@ -28,10 +29,22 @@ const TextInput = () => {
         className={classes.input}
         multiline
         placeholder="Your message goes here..."
+        onChange={e => {
+          e.preventDefault()
+          setMessage(e.target.value)
+        }}
       />
       <IconButton
         className={classes.button}
         color="primary"
+        onClick={event => {
+          event.preventDefault()
+          const msg = {
+            username: user,
+            message: message
+          }
+          addMessage(msg)
+        }}
       >
         <SendIcon/>
       </IconButton>

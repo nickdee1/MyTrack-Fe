@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import {makeStyles} from '@material-ui/core';
@@ -7,7 +7,7 @@ import TextInput from '../../components/chat-text-input/TextInput';
 import Box from '@material-ui/core/Box';
 
 
-const messages = [
+let messagesMock = [
   {
     username: "user1",
     message: "Ladies others the six desire age. Bred am soon park past read by lain. As excuse eldest no moment. "
@@ -32,7 +32,7 @@ const useStyles = makeStyles({
   }
 })
 
-const getMessages = () => {
+const getMessages = (messages) => {
   return messages.map(msg =>
     <ChatCard username={msg.username} msg={msg.message}/>
   )
@@ -40,6 +40,12 @@ const getMessages = () => {
 
 const FirstPage = () => {
   const classes = useStyles()
+  const [messages, setMessages] = useState(messagesMock)
+
+  const addMsg = (msg) => {
+    let out = [...messages, msg]
+    setMessages(out)
+  }
 
   return (
     <Grid
@@ -58,9 +64,9 @@ const FirstPage = () => {
           className={classes.paper}
         >
           <Box className={classes.box}>
-            {getMessages()}
+            {getMessages(messages)}
           </Box>
-        <TextInput/>
+        <TextInput addMessage={addMsg} user={"user1"}/>
         </Paper>
       </Grid>
     </Grid>
