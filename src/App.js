@@ -1,12 +1,12 @@
 import './App.css';
 import React from 'react';
-import FirstPage from './pages/first-page/FirstPage';
+import ChatPage from './pages/chat-page/ChatPage';
 
 
 function App() {
   return (
     <div>
-      <FirstPage/>
+      <ChatPage/>
     </div>
   );
 }

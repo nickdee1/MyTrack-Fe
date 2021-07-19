@@ -3,22 +3,37 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core';
+import UserAvatar from '../common/UserAvatar';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   appBar: {
-    borderRadius: "5px 5px 0px 0px",
+    background: "#ffffff"
   },
-})
+  nameAndLastSeen: {
+    display: "flex",
+    flexDirection: "column",
+    marginLeft: theme.spacing(2)
+  },
+  chatName: {
+    color: "#000000"
+  }
+}))
 
-const ChatAppBar = () => {
+const ChatAppBar = ({title, lastSeen}) => {
   const classes = useStyles()
 
   return(
-    <AppBar position="static" className={classes.appBar}>
+    <AppBar elevation={2} className={classes.appBar} position="static">
       <Toolbar>
-        <Typography>
-          Chat
-        </Typography>
+        <UserAvatar username={"abc"} standardSize={true}/>
+        <div className={classes.nameAndLastSeen}>
+          <Typography variant="body1" className={classes.chatName} style={{fontWeight: 550}}>
+            {title}
+          </Typography>
+          <Typography className={classes.chatName} variant="caption">
+            {"last seen "} {lastSeen}
+          </Typography>
+        </div>
       </Toolbar>
     </AppBar>
   )

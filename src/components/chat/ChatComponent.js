@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import {makeStyles} from '@material-ui/core';
-import ChatCard from '../../components/chat-card/ChatCard';
-import TextInput from '../../components/chat-text-input/TextInput';
+import ChatMessageCard from '../message-card/MessageCard';
+import TextInput from '../chat-text-input/TextInput';
 import List from '@material-ui/core/List';
-import ChatAppBar from '../../components/app-bar/ChatAppBar';
+import ChatAppBar from '../app-bar/ChatAppBar';
 
 
 let messagesMock = [
@@ -25,7 +25,7 @@ let messagesMock = [
 
 const useStyles = makeStyles({
   container: {
-    height: "100vh",
+    height: '100vh',
     overflow: "hidden",
   },
   paper: {
@@ -51,11 +51,11 @@ const useStyles = makeStyles({
 
 const getMessages = (messages) => {
   return messages.map(msg =>
-    <ChatCard username={msg.username} msg={msg.message}/>
+    <ChatMessageCard username={msg.username} msg={msg.message}/>
   )
 }
 
-const FirstPage = () => {
+const ChatComponent = () => {
   const classes = useStyles()
   const [messages, setMessages] = useState(messagesMock)
 
@@ -69,16 +69,13 @@ const FirstPage = () => {
       <Grid
         className={classes.container}
         container
-        justify="center"
         direction="row"
       >
         <Grid
           item
-          xs={12}
-          md={8}
         >
           <Paper className={classes.paper}>
-            <ChatAppBar/>
+            <ChatAppBar title={"Personal chat"} lastSeen={"17:00"}/>
 
             <div className={classes.chatListAndInput}>
               <List
@@ -99,4 +96,4 @@ const FirstPage = () => {
   )
 }
 
-export default FirstPage
+export default ChatComponent
