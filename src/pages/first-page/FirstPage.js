@@ -4,10 +4,8 @@ import Paper from '@material-ui/core/Paper';
 import {makeStyles} from '@material-ui/core';
 import ChatCard from '../../components/chat-card/ChatCard';
 import TextInput from '../../components/chat-text-input/TextInput';
-import Box from '@material-ui/core/Box';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+import List from '@material-ui/core/List';
+import ChatAppBar from '../../components/app-bar/ChatAppBar';
 
 
 let messagesMock = [
@@ -27,15 +25,27 @@ let messagesMock = [
 
 const useStyles = makeStyles({
   container: {
-    marginTop: "40px",
+    height: "100vh",
+    overflow: "hidden",
+  },
+  paper: {
+    position: "relative",
     height: "100%",
   },
-  box: {
-    marginTop: "15px",
-    marginBottom: "30px"
+  list: {
+    height: "100%",
   },
-  appBar: {
-    borderRadius: "5px 5px 0px 0px",
+  input: {
+    bottom: "0",
+    left: "0",
+    right: "0",
+    width: "100%",
+    position: "absolute"
+  },
+  chatListAndInput: {
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
   }
 })
 
@@ -57,29 +67,31 @@ const FirstPage = () => {
   return (
     <div>
       <Grid
-        fluid
-        height = {1}
-        container
-        justify = "center"
         className={classes.container}
+        container
+        justify="center"
+        direction="row"
       >
         <Grid
           item
-          xs={10}
+          xs={12}
           md={8}
         >
-          <Paper>
-            <AppBar position="static" className={classes.appBar}>
-              <Toolbar>
-                <Typography>
-                  Chat
-                </Typography>
-              </Toolbar>
-            </AppBar>
-            <Box className={classes.box}>
-              {getMessages(messages)}
-            </Box>
-            <TextInput addMessage={addMsg} user={"user1"}/>
+          <Paper className={classes.paper}>
+            <ChatAppBar/>
+
+            <div className={classes.chatListAndInput}>
+              <List
+                className={classes.list}
+                style={{maxHeight: '80vh', overflow: 'auto'}}
+              >
+                {getMessages(messages)}
+              </List>
+              <div className={classes.input}>
+                <TextInput addMessage={addMsg} user={"user1"}/>
+              </div>
+            </div>
+
           </Paper>
         </Grid>
       </Grid>
