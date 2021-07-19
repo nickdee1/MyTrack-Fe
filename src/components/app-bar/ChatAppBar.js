@@ -16,6 +16,9 @@ const useStyles = makeStyles((theme) => ({
   },
   chatName: {
     color: "#000000"
+  },
+  lastSeen: {
+    color: "#616161"
   }
 }))
 
@@ -30,7 +33,7 @@ const ChatAppBar = ({title, lastSeen}) => {
           <Typography variant="body1" className={classes.chatName} style={{fontWeight: 550}}>
             {title}
           </Typography>
-          <Typography className={classes.chatName} variant="caption">
+          <Typography className={classes.lastSeen} variant="caption">
             {"last seen "} {lastSeen}
           </Typography>
         </div>
