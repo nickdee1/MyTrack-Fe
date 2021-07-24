@@ -8,36 +8,42 @@ import UserAvatar from '../common/UserAvatar';
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    backgroundColor: "#f5f5f5",
+    backgroundColor: '#f5f5f5',
     borderRadius: 0
   },
   cardContainer: {
-    paddingLeft: "20px",
-    paddingRight: "20px",
-    paddingTop: "10px",
-    paddingBottom: "10px",
-    borderRadius: "0px",
-  },
-  messageText: {
-    width: "80%",
-    overflow: "hidden",
-    lineClamp: 2,
-    maxWidth: "32vh"
+    paddingLeft: '20px',
+    paddingRight: '20px',
+    paddingTop: '10px',
+    paddingBottom: '10px',
+    borderRadius: '0px',
+    display: 'flex',
+    height: '100%',
+    justifyContent: 'space-between'
   },
   avatar: {
     width: theme.spacing(7),
     height: theme.spacing(7),
   },
-  usernameAndMessage: {
-    height: "100%",
-    display: "flex",
-    justifyContent: "space-between"
+  chatTextContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    maxWidth: '80%',
+    lineCamp: 2,
+    alignContent: 'space-between',
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
+  chatContent: {
+    display: 'flex',
+    width: '80%',
+    textOverflow: 'ellipsis',
+  }
 }))
 
 const ChatCard = ({username, lastMsg}) => {
   const classes = useStyles()
-  return(
+  return (
     <Card
       className={classes.card}
       elevation={0}
@@ -50,23 +56,21 @@ const ChatCard = ({username, lastMsg}) => {
           direction="row"
           spacing={1}
         >
-          <Grid item>
+          <div className={classes.chatContent}>
             <UserAvatar username={username} standardSize={false}/>
-          </Grid>
-          <Grid item>
-            <Grid className={classes.usernameAndMessage} container direction="column">
-              <Grid item xs zeroMinWidth>
-                <Typography variant="subtitle2" style={{ fontWeight: 600 }} noWrap>
+            <Grid item className={classes.chatTextContainer}>
+              <Grid item xs>
+                <Typography variant="subtitle2" style={{fontWeight: 600}} noWrap>
                   {username}
                 </Typography>
               </Grid>
-              <Grid item xs zeroMinWidth>
-                <Typography variant="body2" className={classes.messageText} noWrap>
+              <Grid item xs>
+                <Typography variant="body2" noWrap>
                   {lastMsg}
                 </Typography>
               </Grid>
             </Grid>
-          </Grid>
+          </div>
           <Grid item>
             <Grid container direction="column">
               <Grid item>

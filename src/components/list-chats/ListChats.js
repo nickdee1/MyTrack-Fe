@@ -16,7 +16,7 @@ const mockChats = [
   },
   {
     username: 'user1',
-    message: 'Ladies others the six desire age. Bred am soon park past read by lain. As excuse eldest no moment. '
+    message: 'Ladies others the six desire age. Bred am soon park past read by lain. As excuse eldest no moment.Ladies others the six desire age. Bred am soon park past read by lain. As excuse eldest no momentLadies others the six desire age. Bred am soon park past read by lain. As excuse eldest no momentLadies others the six desire age. Bred am soon park past read by lain. As excuse eldest no momentLadies others the six desire age. Bred am soon park past read by lain. As excuse eldest no moment '
   },
   {
     username: 'Certainly',
@@ -37,6 +37,7 @@ const useStyles = makeStyles({
   },
   list: {
     height: "100%",
+    width: "100%",
     overflow: 'auto',
     backgroundColor: "#fafafa"
   }
