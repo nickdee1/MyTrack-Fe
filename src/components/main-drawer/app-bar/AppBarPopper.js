@@ -8,6 +8,7 @@ import Popper from '@material-ui/core/Popper';
 import {makeStyles} from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import MenuItemCard from '../../common/MenuItemCard';
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {

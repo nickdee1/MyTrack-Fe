@@ -1,6 +1,7 @@
 import React from 'react';
-import MenuBar from './app-bar/ListChatBar';
+import MenuBar from './app-bar/MenuBar';
 import {makeStyles} from '@material-ui/core';
+import MenuItemCard from '../common/MenuItemCard';
 
 const useStyles = makeStyles({
   list: {
@@ -17,7 +18,7 @@ const  ProfileSettings = () => {
     <>
       <MenuBar pageName='Profile'/>
       <div className={classes.list}>
-
+        <MenuItemCard name={'Settings'}/>
       </div>
     </>
   )

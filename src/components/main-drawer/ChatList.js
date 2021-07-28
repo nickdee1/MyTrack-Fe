@@ -1,6 +1,6 @@
 import React from 'react';
 import List from '@material-ui/core/List';
-import MenuBar from './app-bar/ListChatBar';
+import MenuBar from './app-bar/MenuBar';
 import {makeStyles} from '@material-ui/core';
 
 const useStyles = makeStyles({
