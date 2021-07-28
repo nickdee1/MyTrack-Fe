@@ -1,9 +1,8 @@
 import React from 'react';
 import ChatCard from '../chat-card/ChatCard';
-import List from '@material-ui/core/List';
 import {makeStyles} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
-import ListCharBar from './app-bar/ListChatBar';
+import AppRouter from './AppRouter';
 
 const mockChats = [
   {
@@ -25,39 +24,35 @@ const mockChats = [
 ]
 
 const getMessages = (messages) => {
-  return messages.map(msg =>
-    <ChatCard username={msg.username} lastMsg={msg.message}/>
+  return messages.map(chats =>
+    <ChatCard username={chats.username} lastMsg={chats.lastMsg}/>
   )
 }
 
 const useStyles = makeStyles({
   container: {
     height: '100vh',
-    overflow: "hidden",
+    width: '100%',
+    overflow: 'hidden',
   },
   list: {
-    height: "100%",
-    width: "100%",
+    height: '100%',
+    width: '100%',
     overflow: 'auto',
-    backgroundColor: "#fafafa"
+    backgroundColor: '#fafafa'
   }
 })
 
-const ListChats = () => {
+const MenuLeftBar = ({chats}) => {
   const classes = useStyles()
   return (
     <Grid
       className={classes.container}
       container
     >
-      <ListCharBar/>
-      <List
-        className={classes.list}
-      >
-        {getMessages(mockChats)}
-      </List>
+      <AppRouter messages={getMessages(chats)}/>
     </Grid>
   )
 }
 
-export default ListChats
+export default MenuLeftBar

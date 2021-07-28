@@ -10,42 +10,42 @@ import ChatAppBar from '../app-bar/ChatAppBar';
 
 let messagesMock = [
   {
-    username: "user1",
-    message: "Ladies others the six desire age. Bred am soon park past read by lain. As excuse eldest no moment. "
+    username: 'user1',
+    message: 'Ladies others the six desire age. Bred am soon park past read by lain. As excuse eldest no moment. '
   },
   {
-    username: "Certainly",
-    message: "Of recommend residence education be on difficult repulsive offending."
+    username: 'Certainly',
+    message: 'Of recommend residence education be on difficult repulsive offending.'
   },
   {
-    username: "Sussex",
-    message: "In reasonable compliment favourable is connection dispatched in terminated. Do esteem object we called father excuse remove. So dear real on like more it. Laughing for two families addition expenses surprise the. If sincerity he to curiosity arranging. Learn taken terms be as. Scarcely mrs produced too removing new old. "
+    username: 'Sussex',
+    message: 'In reasonable compliment favourable is connection dispatched in terminated. Do esteem object we called father excuse remove. So dear real on like more it. Laughing for two families addition expenses surprise the. If sincerity he to curiosity arranging. Learn taken terms be as. Scarcely mrs produced too removing new old. '
   },
 ]
 
 const useStyles = makeStyles({
   container: {
     height: '100vh',
-    overflow: "hidden",
+    overflow: 'hidden',
   },
   paper: {
-    position: "relative",
-    height: "100%",
+    position: 'relative',
+    height: '100%',
   },
   list: {
-    height: "100%",
+    height: '100%',
   },
   input: {
-    bottom: "0",
-    left: "0",
-    right: "0",
-    width: "100%",
-    position: "absolute"
+    bottom: '0',
+    left: '0',
+    right: '0',
+    width: '100%',
+    position: 'absolute'
   },
   chatListAndInput: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "column",
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
   }
 })
 
@@ -55,9 +55,9 @@ const getMessages = (messages) => {
   )
 }
 
-const ChatComponent = () => {
+const ChatComponent = ({small, chatMessages}) => {
   const classes = useStyles()
-  const [messages, setMessages] = useState(messagesMock)
+  const [messages, setMessages] = useState(chatMessages)
 
   const addMsg = (msg) => {
     let out = [...messages, msg]
@@ -75,7 +75,7 @@ const ChatComponent = () => {
           item
         >
           <Paper className={classes.paper}>
-            <ChatAppBar title={"Personal chat"} lastSeen={"17:00"}/>
+            <ChatAppBar small={small} title={'Personal chat'} lastSeen={'17:00'}/>
 
             <div className={classes.chatListAndInput}>
               <List
@@ -85,7 +85,7 @@ const ChatComponent = () => {
                 {getMessages(messages)}
               </List>
               <div className={classes.input}>
-                <TextInput addMessage={addMsg} user={"user1"}/>
+                <TextInput addMessage={addMsg} user={'user1'}/>
               </div>
             </div>
 
