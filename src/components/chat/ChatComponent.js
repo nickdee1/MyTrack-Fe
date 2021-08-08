@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import {makeStyles} from '@material-ui/core';
@@ -6,22 +6,7 @@ import ChatMessageCard from '../message-card/MessageCard';
 import TextInput from '../chat-text-input/TextInput';
 import List from '@material-ui/core/List';
 import ChatAppBar from '../app-bar/ChatAppBar';
-
-
-let messagesMock = [
-  {
-    username: 'user1',
-    message: 'Ladies others the six desire age. Bred am soon park past read by lain. As excuse eldest no moment. '
-  },
-  {
-    username: 'Certainly',
-    message: 'Of recommend residence education be on difficult repulsive offending.'
-  },
-  {
-    username: 'Sussex',
-    message: 'In reasonable compliment favourable is connection dispatched in terminated. Do esteem object we called father excuse remove. So dear real on like more it. Laughing for two families addition expenses surprise the. If sincerity he to curiosity arranging. Learn taken terms be as. Scarcely mrs produced too removing new old. '
-  },
-]
+import {useSelector} from 'react-redux';
 
 const useStyles = makeStyles({
   container: {
@@ -49,20 +34,19 @@ const useStyles = makeStyles({
   }
 })
 
-const getMessages = (messages) => {
-  return messages.map(msg =>
-    <ChatMessageCard username={msg.username} msg={msg.message}/>
-  )
+const getMessages = (openChat, chats) => {
+  if (openChat !== -1) {
+    const chat = chats.find(chat => chat.id === openChat)
+    return chat.messages.map(msg =>
+      <ChatMessageCard username={'eduard'} msg={msg.content.text}/>
+    )
+  }
 }
 
-const ChatComponent = ({small, chatMessages}) => {
+const ChatComponent = ({small}) => {
   const classes = useStyles()
-  const [messages, setMessages] = useState(chatMessages)
-
-  const addMsg = (msg) => {
-    let out = [...messages, msg]
-    setMessages(out)
-  }
+  const chats = useSelector(state => state.messages.data)
+  const openChat = useSelector(state => state.openChat.openChat)
 
   return (
     <div>
@@ -82,10 +66,11 @@ const ChatComponent = ({small, chatMessages}) => {
                 className={classes.list}
                 style={{maxHeight: '80vh', overflow: 'auto'}}
               >
-                {getMessages(messages)}
+                {getMessages(openChat, chats)}
               </List>
               <div className={classes.input}>
-                <TextInput addMessage={addMsg} user={'user1'}/>
+                {/*TODO: TO ADD MESSAGES */}
+                <TextInput user={'user1'}/>
               </div>
             </div>
 
@@ -95,5 +80,6 @@ const ChatComponent = ({small, chatMessages}) => {
     </div>
   )
 }
+
 
 export default ChatComponent

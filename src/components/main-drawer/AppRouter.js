@@ -3,13 +3,13 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import ChatList from './ChatList';
 import ProfileSettings from './ProfileSettings';
 
-const AppRouter = ({messages}) => {
+const AppRouter = () => {
 
   return (
     <Router>
       <Switch>
         <Route path='/chats'>
-          <ChatList messages={messages}/>
+          <ChatList/>
         </Route>
         <Route path='/settings'>
           <ProfileSettings/>

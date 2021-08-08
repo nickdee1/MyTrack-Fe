@@ -4,6 +4,8 @@ import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import Chip from '@material-ui/core/Chip';
 import UserAvatar from '../common/UserAvatar';
+import {useDispatch} from 'react-redux';
+import {openChat} from '../../redux/actions';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,14 +43,22 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const ChatCard = ({username, lastMsg}) => {
+const drawUnreadPin = unreadCount => {
+  if (unreadCount) {
+    return <Chip label={unreadCount} color="primary"/>
+  }
+}
+
+const ChatCard = ({chat}) => {
   const classes = useStyles()
+  const dispatch = useDispatch()
+
   return (
     <Card
       className={classes.card}
       elevation={0}
     >
-      <CardActionArea>
+      <CardActionArea onClick={() => dispatch(openChat(chat.id))}>
         <Grid
           className={classes.cardContainer}
           container
@@ -57,16 +67,16 @@ const ChatCard = ({username, lastMsg}) => {
           spacing={1}
         >
           <div className={classes.chatContent}>
-            <UserAvatar username={username} standardSize={false}/>
+            <UserAvatar username={chat.title} standardSize={false}/>
             <Grid item className={classes.chatTextContainer}>
               <Grid item xs>
                 <Typography variant="subtitle2" style={{fontWeight: 600}} noWrap>
-                  {username}
+                  {chat.title}
                 </Typography>
               </Grid>
               <Grid item xs>
                 <Typography variant="body2" noWrap>
-                  {lastMsg}
+                  {chat.lastMessage.content.text}
                 </Typography>
               </Grid>
             </Grid>
@@ -77,7 +87,7 @@ const ChatCard = ({username, lastMsg}) => {
                 <Typography variant="caption">17:00</Typography>
               </Grid>
               <Grid item>
-                <Chip label="2" color="primary"/>
+                {drawUnreadPin(chat.unreadCount)}
               </Grid>
             </Grid>
           </Grid>

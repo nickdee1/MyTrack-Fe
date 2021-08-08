@@ -4,25 +4,6 @@ import {makeStyles} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import AppRouter from './AppRouter';
 
-const mockChats = [
-  {
-    username: 'user1',
-    message: 'Ladies others the six desire age. Bred am soon park past read by lain. As excuse eldest no moment. '
-  },
-  {
-    username: 'Certainly',
-    message: 'Of recommend residence education be on difficult repulsive offending.'
-  },
-  {
-    username: 'user1',
-    message: 'Ladies others the six desire age. Bred am soon park past read by lain. As excuse eldest no moment.Ladies others the six desire age. Bred am soon park past read by lain. As excuse eldest no momentLadies others the six desire age. Bred am soon park past read by lain. As excuse eldest no momentLadies others the six desire age. Bred am soon park past read by lain. As excuse eldest no momentLadies others the six desire age. Bred am soon park past read by lain. As excuse eldest no moment '
-  },
-  {
-    username: 'Certainly',
-    message: 'Of recommend residence education be on difficult repulsive offending.'
-  },
-]
-
 const getMessages = (messages) => {
   return messages.map(chats =>
     <ChatCard username={chats.username} lastMsg={chats.lastMsg}/>
