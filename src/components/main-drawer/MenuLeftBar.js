@@ -1,14 +1,8 @@
 import React from 'react';
-import ChatCard from '../chat-card/ChatCard';
 import {makeStyles} from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import AppRouter from './AppRouter';
 
-const getMessages = (messages) => {
-  return messages.map(chats =>
-    <ChatCard username={chats.username} lastMsg={chats.lastMsg}/>
-  )
-}
 
 const useStyles = makeStyles({
   container: {
@@ -24,14 +18,14 @@ const useStyles = makeStyles({
   }
 })
 
-const MenuLeftBar = ({chats}) => {
+const MenuLeftBar = () => {
   const classes = useStyles()
   return (
     <Grid
       className={classes.container}
       container
     >
-      <AppRouter messages={getMessages(chats)}/>
+      <AppRouter/>
     </Grid>
   )
 }
