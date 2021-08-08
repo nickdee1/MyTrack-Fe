@@ -4,6 +4,7 @@ import MenuLeftBar from '../../components/main-drawer/MenuLeftBar';
 import ChatComponent from '../../components/chat/ChatComponent';
 import {makeStyles} from '@material-ui/core';
 import withWidth from '@material-ui/core/withWidth';
+import {useSelector} from 'react-redux';
 
 
 const useStyles = makeStyles({
@@ -15,42 +16,30 @@ const useStyles = makeStyles({
   }
 })
 
-
-let messagesMock = [
-  {
-    username: "user1",
-    message: "Ladies others the six desire age. Bred am soon park past read by lain. As excuse eldest no moment. "
-  },
-  {
-    username: "Certainly",
-    message: "Of recommend residence education be on difficult repulsive offending."
-  },
-  {
-    username: "Sussex",
-    message: "In reasonable compliment favourable is connection dispatched in terminated. Do esteem object we called father excuse remove. So dear real on like more it. Laughing for two families addition expenses surprise the. If sincerity he to curiosity arranging. Learn taken terms be as. Scarcely mrs produced too removing new old. "
-  },
-]
-
-let messageChats = [
-  {
-    username: "user1",
-    messages: messagesMock,
-    lastMsg: "12354"
-  }
-]
-
 const ChatPage = (props) => {
   const classes = useStyles()
+  const openChat = useSelector(state => state.openChat.openChat)
 
-  if (props.width === "xs") {
-    return(
+  if (props.width === 'xs' || props.width === 'sm') {
+    if (openChat !== -1) {
+      return (
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          className={classes.container}
+        >
+          <ChatComponent small={true}/>
+        </Grid>)
+    }
+    return (
       <Grid
         container
         direction="row"
         justify="center"
         className={classes.container}
       >
-          <MenuLeftBar chats={messageChats}/>
+        <MenuLeftBar/>
       </Grid>
     )
   }
@@ -68,7 +57,7 @@ const ChatPage = (props) => {
         md={3}
         lg={3}
       >
-        <MenuLeftBar chats={messageChats}/>
+        <MenuLeftBar/>
       </Grid>
       <Grid
         item
@@ -76,7 +65,7 @@ const ChatPage = (props) => {
         md={9}
         lg={9}
       >
-        <ChatComponent chatMessages={messagesMock}/>
+        <ChatComponent/>
       </Grid>
     </Grid>
   )
