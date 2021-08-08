@@ -1,5 +1,4 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import {makeStyles} from '@material-ui/core';
 import ChatMessageCard from '../message-card/MessageCard';
@@ -50,33 +49,26 @@ const ChatComponent = ({small}) => {
 
   return (
     <div>
-      <Grid
+      <div
         className={classes.container}
-        container
-        direction="row"
       >
-        <Grid
-          item
-        >
-          <Paper className={classes.paper}>
-            <ChatAppBar small={small} title={'Personal chat'} lastSeen={'17:00'}/>
+        <Paper className={classes.paper}>
+          <ChatAppBar small={small} title={'Personal chat'} lastSeen={'17:00'}/>
 
-            <div className={classes.chatListAndInput}>
-              <List
-                className={classes.list}
-                style={{maxHeight: '80vh', overflow: 'auto'}}
-              >
-                {getMessages(openChat, chats)}
-              </List>
-              <div className={classes.input}>
-                {/*TODO: TO ADD MESSAGES */}
-                <TextInput user={'user1'}/>
-              </div>
+          <div className={classes.chatListAndInput}>
+            <List
+              className={classes.list}
+              style={{maxHeight: '80vh', overflow: 'auto'}}
+            >
+              {getMessages(openChat, chats)}
+            </List>
+            <div className={classes.input}>
+              {/*TODO: TO ADD MESSAGES */}
+              <TextInput user={'user1'}/>
             </div>
-
-          </Paper>
-        </Grid>
-      </Grid>
+          </div>
+        </Paper>
+      </div>
     </div>
   )
 }
