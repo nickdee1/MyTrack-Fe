@@ -20,7 +20,7 @@ const ChatPage = (props) => {
   const classes = useStyles()
   const openChat = useSelector(state => state.openChat.openChat)
 
-  if (props.width === 'xs') {
+  if (props.width === 'xs' || props.width === 'sm') {
     if (openChat !== -1) {
       return (
         <Grid

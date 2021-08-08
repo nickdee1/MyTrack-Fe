@@ -10,6 +10,7 @@ import {useSelector} from 'react-redux';
 const useStyles = makeStyles({
   container: {
     height: '100vh',
+    width: '100%',
     overflow: 'hidden',
   },
   paper: {
@@ -48,7 +49,6 @@ const ChatComponent = ({small}) => {
   const openChat = useSelector(state => state.openChat.openChat)
 
   return (
-    <div>
       <div
         className={classes.container}
       >
@@ -69,7 +69,6 @@ const ChatComponent = ({small}) => {
           </div>
         </Paper>
       </div>
-    </div>
   )
 }
 

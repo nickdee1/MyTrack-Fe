@@ -6,6 +6,8 @@ import {makeStyles} from '@material-ui/core';
 import UserAvatar from '../common/UserAvatar';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import IconButton from '@material-ui/core/IconButton';
+import {useDispatch} from 'react-redux';
+import {closeChat} from '../../redux/actions';
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -24,10 +26,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const returnBack = (small) => {
+const returnBack = (small, close) => {
   if (small) {
     return (
-      <IconButton>
+      <IconButton onClick={() => close()}>
         <ArrowBackIosIcon color="primary"/>
       </IconButton>
     )
@@ -36,11 +38,12 @@ const returnBack = (small) => {
 
 const ChatAppBar = ({title, lastSeen, small}) => {
   const classes = useStyles()
+  const dispatch = useDispatch()
 
   return(
     <AppBar elevation={2} className={classes.appBar} position="static">
       <Toolbar>
-        {returnBack(small)}
+        {returnBack(small, () => dispatch(closeChat()))}
         <UserAvatar username={"abc"} standardSize={true}/>
         <div className={classes.nameAndLastSeen}>
           <Typography variant="body1" className={classes.chatName} style={{fontWeight: 550}}>
